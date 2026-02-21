@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iman Fatima – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #063b04;
+      --green-light: #0a5a06;
+      --gray-bg: #e8e8e8;
+      --text: #111;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: #fff; color: var(--text); }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--green);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.75rem 3rem;
+    }
+    .nav-logo {
+      color: #fff; font-family: 'Bebas Neue', cursive;
+      font-size: 1.3rem; letter-spacing: 0.1em; text-decoration: none;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .nav-links a {
+      color: #bbb; text-decoration: none;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links .btn-contact {
+      border: 1px solid #fff; color: #fff;
+      padding: 0.3rem 1.1rem; border-radius: 999px;
+      font-size: 0.65rem; letter-spacing: 0.1em;
+      transition: background .2s, color .2s;
+    }
+    .nav-links .btn-contact:hover { background: #fff; color: #111; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: #fff; border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--green); z-index: 150;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: #ccc; text-decoration: none;
+      font-size: 1.1rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: #fff; }
+    .mobile-menu .btn-contact {
+      border: 1px solid #fff; color: #fff;
+      padding: 0.5rem 2rem; border-radius: 999px;
+      font-size: 0.9rem; letter-spacing: 0.15em;
+    }
+    .mobile-close {
+      position: absolute; top: 1rem; right: 1.5rem;
+      background: none; border: none; color: #fff;
+      font-size: 2rem; cursor: pointer; line-height: 1;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: #fff;
+      display: grid; grid-template-columns: 1fr 1.5fr;
+      min-height: 90vh; position: relative; overflow: hidden;
+    }
+    .hero-left {
+      padding: 3rem 3rem 2rem;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; z-index: 2;
+    }
+    .hero-intro .hi { font-size: 1.5rem; color: #444; font-weight: 400; margin-bottom: 0.2rem; }
+    .hero-intro h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(4rem, 8vw, 7rem); line-height: 1;
+      letter-spacing: 0.02em; color: #111;
+    }
+    .hero-intro .subtitle {
+      font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+      color: var(--green); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-top: 0.5rem; font-weight: 600;
+    }
+    .hero-socials { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+    .hero-socials a {
+      width: 40px; height: 40px;
+      border: 1.5px solid #bbb; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #555; text-decoration: none; font-size: 0.7rem;
+      transition: border-color .2s, color .2s;
+    }
+    .hero-socials a:hover { border-color: #111; color: #111; }
+    .hero-right {
+      background: #111; position: relative;
+      clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    .hero-right img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center; opacity: 0.85;
+    }
+
+    /* ── BAND ── */
+    .band {
+      background: var(--green); padding: 3rem;
+    }
+    .band h2 { color: #fff; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .band p { color: #fff; font-size: 0.9rem; line-height: 1.9; font-weight: 300; max-width: 700px; }
+    .band-btn {
+      display: inline-block; margin-top: 1.25rem;
+      border: 1px solid #555; color: #bbb;
+      padding: 0.4rem 1.4rem; font-size: 0.65rem;
+      letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+    .band-btn:hover { border-color: #fff; color: #fff; }
+
+    /* ── SECTIONS ── */
+    .section { background: var(--gray-bg); padding: 4rem 3rem; text-align: center; }
+    .section-title {
+      display: inline-block; border: 2px solid #111;
+      padding: 0.5rem 2.5rem; font-size: 0.85rem;
+      font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .section-desc {
+      max-width: 580px; margin: 0 auto 1.5rem;
+      color: #555; font-size: 0.8rem; line-height: 1.9;
+    }
+    .divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 2rem; color: #aaa;
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      margin: 2.5rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; display: block; width: 60px; height: 1px; background: #bbb;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem 4rem; max-width: 800px; margin: 0 auto; text-align: left;
+    }
+    .service-item h3 {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .service-item p { font-size: 0.7rem; color: #666; line-height: 1.85; }
+    .cv-btn {
+      display: inline-block; border: 1px solid #bbb;
+      padding: 0.4rem 1.5rem; font-size: 0.62rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; color: #111; margin-bottom: 0.5rem;
+      transition: background .2s, color .2s;
+    }
+    .cv-btn:hover { background: #111; color: #fff; }
+
+    /* ── SKILLS ── */
+    .skills-section { background: var(--gray-bg); padding: 2rem 3rem 4rem; text-align: center; }
+    .skills-label {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; margin: 1.5rem 0 1rem;
+    }
+    .skills-grid {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      max-width: 700px; margin: 0 auto; justify-content: center;
+    }
+    .skill-item { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 65px; }
+    .skill-item img { width: 38px; height: 38px; object-fit: contain; }
+    .skill-item span { font-size: 0.5rem; color: #555; letter-spacing: 0.06em; text-transform: uppercase; text-align: center; }
+
+    /* ── PORTFOLIO ── */
+    .portfolio-band {
+      background: var(--green); padding: 3.5rem 3rem; text-align: center;
+    }
+    .portfolio-band .section-title { border-color: #fff; color: #fff; }
+    .portfolio-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); background: var(--green);
+    }
+    .portfolio-item {
+      overflow: hidden; cursor: pointer; position: relative;
+      aspect-ratio: 4/3; display: block; text-decoration: none;
+    }
+    .portfolio-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease; filter: brightness(0.75);
+    }
+    .portfolio-item:hover img { transform: scale(1.06); filter: brightness(1); }
+    .portfolio-item-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(6,59,4,0.9) 0%, transparent 60%);
+      opacity: 0; transition: opacity .3s;
+      display: flex; align-items: flex-end; padding: 1rem;
+    }
+    .portfolio-item:hover .portfolio-item-overlay { opacity: 1; }
+    .portfolio-item-overlay span { color: #fff; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .portfolio-more {
+      text-align: center; background: var(--green); padding: 1.5rem;
+    }
+    .portfolio-more a {
+      color: #888; font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; text-decoration: none; transition: color .2s;
+    }
+    .portfolio-more a:hover { color: #fff; }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--gray-bg); padding: 5rem 3rem; text-align: center; }
+    .contact-section form {
+      max-width: 480px; margin: 0 auto; text-align: left;
+      display: flex; flex-direction: column; gap: 0.9rem;
+    }
+    .contact-section input,
+    .contact-section textarea {
+      width: 100%; background: transparent; border: none;
+      border-bottom: 1px solid #aaa; padding: 0.6rem 0;
+      font-size: 0.75rem; color: #111; font-family: 'Montserrat', sans-serif;
+      outline: none; transition: border-color .2s;
+    }
+    .contact-section input::placeholder,
+    .contact-section textarea::placeholder { color: #aaa; letter-spacing: 0.04em; }
+    .contact-section input:focus,
+    .contact-section textarea:focus { border-bottom-color: #111; }
+    .contact-section textarea { resize: none; height: 100px; }
+    .contact-section .submit-wrap { text-align: center; margin-top: 1rem; }
+    .btn-outline {
+      border: 1.5px solid #111; background: transparent; color: #111;
+      padding: 0.5rem 2rem; font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; cursor: pointer;
+      font-family: 'Montserrat', sans-serif; font-weight: 600;
+      transition: background .2s, color .2s;
+    }
+    .btn-outline:hover { background: #111; color: #fff; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--green); text-align: center; padding: 2.5rem 3rem 1.5rem; }
+    .footer-back-top {
+      color: #ddd; font-size: 0.55rem; letter-spacing: 0.2em;
+      text-transform: uppercase; text-decoration: none;
+      display: block; margin-bottom: 1.5rem; transition: color .2s;
+    }
+    .footer-back-top:hover { color: #fff; }
+    .footer-socials { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.5rem; }
+    .footer-socials a { color: #666; font-size: 0.8rem; transition: color .2s; text-decoration: none; }
+    .footer-socials a:hover { color: #fff; }
+    footer p { color: #555; font-size: 0.55rem; letter-spacing: 0.05em; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { gap: 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1.5rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: cover;
+      }
+      .hero-right {
+        clip-path: none;
+        min-height: 55vw;
+        order: -1;
+      }
+      .hero-left {
+        padding: 2rem 1.5rem;
+        text-align: center;
+        align-items: center;
+      }
+      .hero-socials { justify-content: center; }
+
+      .band { padding: 2rem 1.5rem; }
+      .section { padding: 3rem 1.5rem; }
+      .skills-section { padding: 2rem 1.5rem 3rem; }
+      .contact-section { padding: 3rem 1.5rem; }
+      footer { padding: 2rem 1.5rem 1.5rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .service-item:last-child { grid-column: auto; }
+
+      .portfolio-band { padding: 2.5rem 1.5rem; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 500px) {
+      .hero-intro h1 { font-size: 3.5rem; }
+      .hero-intro .subtitle { font-size: 0.7rem; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">IF</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact" class="btn-contact">Contact</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close">×</button>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#skills" class="mobile-link">Skills</a>
+  <a href="#portfolio" class="mobile-link">Portfolio</a>
+  <a href="#contact" class="mobile-link btn-contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-intro">
+      <p class="hi">Hi, I am</p>
+      <h1>Iman<br>Fatima</h1>
+      <p class="subtitle">Full-Stack Developer &amp; Cyber Security Specialist</p>
+      <div class="hero-socials">
+        <a href="https://github.com/imanfatimadocx" title="GitHub" target="_blank" rel="noopener">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.17c-3.34.72-4.04-1.6-4.04-1.6-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.3.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.3-1.23 3.3-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.23 3.22 0 4.6-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/iman-fatima-b14870298" title="LinkedIn" target="_blank" rel="noopener">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="./images/pfp.png" alt="Iman Fatima" />
+  </div>
+</section>
+
+<!-- RASEKH BAND -->
+<section class="band">
+  <h2>Rasekh</h2>
+  <p>I am founder of a muslimah led platform called Rasekh where we provide tech education to muslim girls all around the world to enable them to earn from home. We are also building cyber-aware young muslimahs in tech spaces and providing web development services to small muslim-led businesses.</p>
+  <a href="https://rasekh.pk" class="band-btn" target="_blank" rel="noopener">Visit Rasekh →</a>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="reveal">
+    <div class="section-title">About Me</div>
+    <p class="section-desc">I am a passionate Full-Stack Developer and Cyber Security Specialist with experience building secure, elegant web applications. I love turning complex problems into digital solutions that users genuinely enjoy. My goal is to provide innovative and secure solutions to primarily muslim-led organizations.</p>
+    <a href="./images/My Resume.pdf" download class="cv-btn">Download CV</a>
+    <div class="divider">Services</div>
+    <div class="services-grid">
+      <div class="service-item">
+        <h3>Cyber Security</h3>
+        <p>Comprehensive cyber security services to protect digital assets and ensure compliance with industry standards.</p>
+      </div>
+      <div class="service-item">
+        <h3>Development</h3>
+        <p>Bringing designs to life with semantic HTML, modern CSS, and JavaScript frameworks. Clean, maintainable code that performs across all devices and browsers.</p>
+      </div>
+      <div class="service-item" style="grid-column: 1 / -1; max-width: 340px;">
+        <h3>Maintenance</h3>
+        <p>Keeping your digital products healthy and up-to-date with performance optimization, bug fixes, and continuous improvements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="reveal">
+    <div class="section-title">Skills</div>
+
+    <p class="skills-label">Using Now</p>
+    <div class="skills-grid">
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"/><span>HTML5</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"/><span>CSS3</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"/><span>JavaScript</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"/><span>TypeScript</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"/><span>React</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js"/><span>Next.js</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"/><span>Node.js</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"/><span>MongoDB</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"/><span>Git</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"/><span>Figma</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Kali Linux"/><span>Kali Linux</span></div>
+      <div class="skill-item"><img src="https://img.icons8.com/ios-filled/50/063b04/bug.png" alt="Malware Analysis"/><span>Malware Analysis</span></div>
+      <div class="skill-item"><img src="https://img.icons8.com/ios-filled/50/063b04/network.png" alt="Network Security"/><span>Network Security</span></div>
+    </div>
+
+    <p class="skills-label">Learning</p>
+    <div class="skills-grid">
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="Machine Learning"/><span>Machine Learning</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python / AI"/><span>AI / Python</span></div>
+    </div>
+
+    <p class="skills-label">Languages &amp; Soft Skills</p>
+    <div class="skills-grid">
+      <div class="skill-item"><img src="https://flagcdn.com/gb.svg" alt="English" style="border-radius:3px;"/><span>English</span></div>
+      <div class="skill-item"><img src="https://flagcdn.com/pk.svg" alt="Urdu" style="border-radius:3px;"/><span>Urdu</span></div>
+      <div class="skill-item"><img src="https://flagcdn.com/pk.svg" alt="Punjabi" style="border-radius:3px;"/><span>Punjabi</span></div>
+      <div class="skill-item"><img src="https://img.icons8.com/ios-filled/50/063b04/leader.png" alt="Leadership"/><span>Leadership</span></div>
+      <div class="skill-item"><img src="https://img.icons8.com/ios-filled/50/063b04/communication.png" alt="Communication"/><span>Communication</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-band" id="portfolio">
+  <div class="section-title">Portfolio</div>
+</section>
+
+<div class="portfolio-grid">
+  <a href="https://rasekh.pk" target="_blank" class="portfolio-item">
+    <img src="./images/1.png" alt="Rasekh.pk"/>
+    <div class="portfolio-item-overlay"><span>Rasekh.pk</span></div>
+  </a>
+  <a href="https://thepickleshop.store" target="_blank" class="portfolio-item">
+    <img src="./images/1.png" alt="The Pickle Shop"/>
+    <div class="portfolio-item-overlay"><span>The Pickle Shop</span></div>
+  </a>
+  <a href="https://github.com/imanfatimadocx/twadapay" target="_blank" class="portfolio-item">
+    <img src="./images/1.png" alt="TwadaPay"/>
+    <div class="portfolio-item-overlay"><span>TwadaPay – Forensic Tool</span></div>
+  </a>
+</div>
+<div class="portfolio-more">
+  <a href="https://github.com/imanfatimadocx" target="_blank" rel="noopener">More projects on GitHub →</a>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="reveal">
+    <div class="section-title">Contact</div>
+    <p class="section-desc">Always open to new opportunities and collaborations. Reach me at <strong>imanfatima.docx@gmail.com</strong> or use the form below.</p>
+    <form onsubmit="handleSubmit(event)">
+      <input type="text" placeholder="Your Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="text" placeholder="Subject" />
+      <textarea placeholder="Your message..."></textarea>
+      <div class="submit-wrap">
+        <button type="submit" class="btn-outline">Send Message</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-back-top">↑ Back to Top</a>
+  <div class="footer-socials">
+    <a href="https://github.com/imanfatimadocx" title="GitHub" target="_blank" rel="noopener">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.17c-3.34.72-4.04-1.6-4.04-1.6-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.3.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.3-1.23 3.3-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.23 3.22 0 4.6-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+    </a>
+    <a href="https://linkedin.com/in/iman-fatima-b14870298" title="LinkedIn" target="_blank" rel="noopener">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+    </a>
+    <a href="https://instagram.com/rasekh.pk" title="Instagram" target="_blank" rel="noopener">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zm0 2h8.5C18.22 4 20 5.78 20 7.75v8.5c0 1.97-1.78 3.75-3.75 3.75h-8.5C5.78 20 4 18.22 4 16.25v-8.5C4 5.78 5.78 4 7.75 4zm8.88 1.5a1.12 1.12 0 1 0 0 2.25 1.12 1.12 0 0 0 0-2.25zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+    </a>
+  </div>
+  <p>© 2026 Iman Fatima · All rights reserved</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileClose = document.getElementById('mobile-close');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  mobileClose.addEventListener('click', closeMobileMenu);
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Sent ✓';
+    btn.style.background = '#111'; btn.style.color = '#fff';
+    setTimeout(() => {
+      e.target.reset();
+      btn.textContent = 'Send Message';
+      btn.style.background = ''; btn.style.color = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
